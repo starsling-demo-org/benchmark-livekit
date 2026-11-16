@@ -17,6 +17,8 @@ concurrency:
 
 jobs:
   notify-devs:
+    # bench-only: notify only in livekit/livekit; the benchmark repo has no Slack secrets, so a PR review or merge here would fail this job.
+    if: github.repository == 'livekit/livekit'
     runs-on: ubuntu-latest
     steps:
       - uses: livekit/slack-notifier-action@4d4c67c421a4190cec360a22328c4ae1186a8875 # main
