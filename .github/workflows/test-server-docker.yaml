@@ -21,14 +21,14 @@ permissions:
   contents: read
 
 on:
+  # bench-only: run on each PR into starsling/develop; no push trigger.
   workflow_dispatch:
-  push:
-    branches:
-      - master
+  pull_request:
+    branches: [starsling/develop]
 
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: starsling-ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -36,6 +36,8 @@ jobs:
         uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
 
       - name: Login to DockerHub
+        # bench-only: PRs into starsling/develop have no Docker Hub secrets; same guard as docker.yaml upstream.
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@81c6f93d4bc991e510b342a00b419b3bb4efc5c6 # v4.7.0
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
@@ -46,7 +48,8 @@ jobs:
         with:
           context: .
           file: cmd/test-server/Dockerfile
-          push: true
+          # bench-only: build without pushing on PRs (same expression as docker.yaml upstream).
+          push: ${{ github.event_name != 'pull_request' }}
           platforms: linux/amd64,linux/arm64
           # Each build overrides the latest tag so SDK CI always boots the
           # current mock server.
