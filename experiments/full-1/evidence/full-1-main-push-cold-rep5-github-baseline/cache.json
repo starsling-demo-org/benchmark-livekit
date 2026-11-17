@@ -1,0 +1,13 @@
+{
+  "cacheEvents": [
+    {
+      "cacheKey": "golangci-lint.cache-Linux-2967-5a22358dcac22be532876cdc9501871614758fa8",
+      "requestedRestoreKeys": [
+        "golangci-lint.cache-Linux-2967-"
+      ],
+      "matchedKey": null,
+      "hitKind": "miss",
+      "sourceRef": "unknown"
+    }
+  ]
+}

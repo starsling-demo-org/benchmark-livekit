@@ -1,0 +1,2114 @@
+{
+  "schemaVersion": 1,
+  "manifest": {
+    "schemaVersion": 1,
+    "experimentId": "full-1-round1",
+    "inputFingerprint": "e6ac0766b4565513bf3167e48d66e267761a4d0ce40f27d69795b40da8c3501b",
+    "samples": [
+      {
+        "sampleId": "full-1-main-push-cold-rep1-github-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "github-baseline",
+        "repetition": 1
+      },
+      {
+        "sampleId": "full-1-main-push-cold-rep1-starsling-baseline",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-baseline",
+        "repetition": 1
+      },
+      {
+        "sampleId": "full-1-main-push-cold-rep1-starsling-patched",
+        "scenarioName": "main-push",
+        "profileName": "cold",
+        "variant": "starsling-patched",
+        "repetition": 1
+      }
+    ]
+  },
+  "config": {
+    "schemaVersion": 1,
+    "upstream": {
+      "repository": "livekit/livekit",
+      "commitSha": "401ddb1432900a357c990af3905511290dc9b9f7",
+      "defaultBranch": "master"
+    },
+    "benchmarkRepository": {
+      "repository": "starsling-demo-org/benchmark-livekit",
+      "controlBranch": "bench/control",
+      "defaultBranch": "showcase",
+      "replayBranch": "master"
+    },
+    "scenarios": {
+      "main-push": {
+        "name": "main-push",
+        "description": "Merge of 401ddb143290 to master",
+        "event": "push",
+        "main": {
+          "branch": "master",
+          "beforeSha": "45b5584c84c12a6d349c4e430807022eeaa7c8af",
+          "afterSha": "401ddb1432900a357c990af3905511290dc9b9f7",
+          "changedPaths": [
+            "pkg/rtc/participant.go",
+            "pkg/rtc/participant_internal_test.go"
+          ]
+        },
+        "referenceRuns": [
+          {
+            "workflowPath": ".github/workflows/buildtest.yaml",
+            "runId": 42833892494,
+            "attempt": 1,
+            "htmlUrl": "https://github.com/livekit/livekit/actions/runs/42833892494"
+          },
+          {
+            "workflowPath": ".github/workflows/test-server-docker.yaml",
+            "runId": 42833892548,
+            "attempt": 1,
+            "htmlUrl": "https://github.com/livekit/livekit/actions/runs/42833892548"
+          },
+          {
+            "workflowPath": ".github/workflows/docker.yaml",
+            "runId": 42833892585,
+            "attempt": 1,
+            "htmlUrl": "https://github.com/livekit/livekit/actions/runs/42833892585"
+          }
+        ]
+      },
+      "seed-parent": {
+        "name": "seed-parent",
+        "role": "seed",
+        "description": "Warm seed: the previous push (45b5584c84c1 onto f6adc7aa28e4)",
+        "event": "push",
+        "main": {
+          "branch": "master",
+          "beforeSha": "f6adc7aa28e4adcdf10dd575e108308569e73f9e",
+          "afterSha": "45b5584c84c12a6d349c4e430807022eeaa7c8af",
+          "changedPaths": [
+            "pkg/service/turn.go",
+            "pkg/service/turn_test.go"
+          ]
+        },
+        "referenceRuns": []
+      }
+    },
+    "patches": [
+      {
+        "id": "stack-0",
+        "source": "local",
+        "pathOrUrl": "patches/stack-0.patch",
+        "description": "levers stacked in order: 01-dockerfile-cross-compile"
+      }
+    ],
+    "runnerMapping": {
+      "defaultMap": {
+        "ubuntu-latest": {
+          "github": "ubuntu-26.04-4core",
+          "starsling": "starsling-ubuntu-26.04"
+        },
+        "ubuntu-24.04": {
+          "github": "TODO-github-larger-runner-for-ubuntu-24.04",
+          "starsling": "starsling-ubuntu-24.04"
+        },
+        "ubuntu-26.04": {
+          "github": "TODO-github-larger-runner-for-ubuntu-26.04",
+          "starsling": "starsling-ubuntu-26.04"
+        },
+        "ubuntu-slim": {
+          "github": "TODO-github-larger-runner-for-ubuntu-slim",
+          "starsling": "starsling-ubuntu-24.04-2"
+        }
+      },
+      "runnerSpecs": {
+        "ubuntu-latest": {
+          "label": "ubuntu-latest",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.016
+        },
+        "ubuntu-24.04": {
+          "label": "ubuntu-24.04",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.016
+        },
+        "ubuntu-26.04": {
+          "label": "ubuntu-26.04",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.016
+        },
+        "ubuntu-slim": {
+          "label": "ubuntu-slim",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 1,
+          "ramGiB": 5,
+          "billingPerMinuteUsd": 0.004
+        },
+        "starsling-ubuntu-24.04-2": {
+          "label": "starsling-ubuntu-24.04-2",
+          "provider": "starsling",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 2,
+          "ramGiB": 8,
+          "billingPerMinuteUsd": 0.004
+        },
+        "starsling-ubuntu-24.04": {
+          "label": "starsling-ubuntu-24.04",
+          "provider": "starsling",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.008
+        },
+        "starsling-ubuntu-26.04": {
+          "label": "starsling-ubuntu-26.04",
+          "provider": "starsling",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.008
+        },
+        "macos-latest": {
+          "label": "macos-latest",
+          "provider": "github",
+          "os": "macos",
+          "arch": "arm64",
+          "vcpu": 3,
+          "ramGiB": 7,
+          "billingPerMinuteUsd": 0.08
+        },
+        "windows-latest": {
+          "label": "windows-latest",
+          "provider": "github",
+          "os": "windows",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.032
+        },
+        "TODO-github-larger-runner-for-ubuntu-latest": {
+          "label": "TODO-github-larger-runner-for-ubuntu-latest",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.016
+        },
+        "TODO-github-larger-runner-for-ubuntu-24.04": {
+          "label": "TODO-github-larger-runner-for-ubuntu-24.04",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.016
+        },
+        "TODO-github-larger-runner-for-ubuntu-26.04": {
+          "label": "TODO-github-larger-runner-for-ubuntu-26.04",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.016
+        },
+        "TODO-github-larger-runner-for-ubuntu-slim": {
+          "label": "TODO-github-larger-runner-for-ubuntu-slim",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 1,
+          "ramGiB": 5,
+          "billingPerMinuteUsd": 0.004
+        },
+        "ubuntu-26.04-4core": {
+          "label": "ubuntu-26.04-4core",
+          "provider": "github",
+          "os": "linux",
+          "arch": "x64",
+          "vcpu": 4,
+          "ramGiB": 16,
+          "billingPerMinuteUsd": 0.016
+        }
+      }
+    },
+    "profiles": {
+      "cold": {
+        "name": "cold",
+        "actionsCache": "cold",
+        "crossRunArtifacts": "none",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": false
+      },
+      "warm": {
+        "name": "warm",
+        "actionsCache": "warm",
+        "crossRunArtifacts": "seeded",
+        "seedScenario": "seed-parent",
+        "restoreExpectations": {},
+        "testResultReuseAllowed": true,
+        "amortizationHorizonRuns": 10
+      }
+    },
+    "adaptations": [
+      {
+        "id": "no-registry-login-or-push-server",
+        "kind": "deployment-guard",
+        "workflowFile": ".github/workflows/docker.yaml",
+        "jobId": "docker",
+        "fromPattern": "github.event_name != 'pull_request'",
+        "toReplacement": "false && github.event_name != 'pull_request'",
+        "expectedMatches": 2,
+        "reason": "Login to DockerHub (if:) and Build and push (push:): no Docker Hub secrets in the benchmark org and nothing may be published; upstream's guard kept, 'false &&' in front. The image is still built for linux/amd64 and linux/arm64.",
+        "blocksFullParity": true
+      },
+      {
+        "id": "no-registry-login-test-server",
+        "kind": "workflow-setting",
+        "workflowFile": ".github/workflows/test-server-docker.yaml",
+        "jobId": "docker",
+        "fromPattern": "",
+        "toReplacement": "",
+        "expectedMatches": 0,
+        "setPath": [
+          "steps",
+          "3",
+          "if"
+        ],
+        "setValue": false,
+        "reason": "Login to DockerHub has no if: upstream; no secrets in the benchmark org (step index +1: instrumentation inserts the harness step at index 0 before adaptations apply)",
+        "blocksFullParity": true
+      },
+      {
+        "id": "no-image-push-test-server",
+        "kind": "workflow-setting",
+        "workflowFile": ".github/workflows/test-server-docker.yaml",
+        "jobId": "docker",
+        "fromPattern": "",
+        "toReplacement": "",
+        "expectedMatches": 0,
+        "setPath": [
+          "steps",
+          "4",
+          "with",
+          "push"
+        ],
+        "setValue": false,
+        "reason": "Build and push must not publish livekit/test-server:latest; the image is still built for linux/amd64 and linux/arm64 (step index +1: instrumentation inserts the harness step at index 0 before adaptations apply)",
+        "blocksFullParity": true
+      },
+      {
+        "id": "secret-gate-docker-username",
+        "kind": "secret-gate-annotation",
+        "workflowFile": ".github/workflows/docker.yaml",
+        "jobId": "docker",
+        "fromPattern": "${{ secrets.DOCKERHUB_USERNAME }}",
+        "toReplacement": "",
+        "expectedMatches": 1,
+        "reason": "DOCKERHUB_USERNAME does not exist in the benchmark org; only the login step reads it, and no-registry-login-or-push-server turns that step off.",
+        "blocksFullParity": false
+      },
+      {
+        "id": "secret-gate-docker-token",
+        "kind": "secret-gate-annotation",
+        "workflowFile": ".github/workflows/docker.yaml",
+        "jobId": "docker",
+        "fromPattern": "${{ secrets.DOCKERHUB_TOKEN }}",
+        "toReplacement": "",
+        "expectedMatches": 1,
+        "reason": "DOCKERHUB_TOKEN does not exist in the benchmark org; only the login step reads it, and no-registry-login-or-push-server turns that step off.",
+        "blocksFullParity": false
+      },
+      {
+        "id": "secret-gate-test-server-username",
+        "kind": "secret-gate-annotation",
+        "workflowFile": ".github/workflows/test-server-docker.yaml",
+        "jobId": "docker",
+        "fromPattern": "${{ secrets.DOCKERHUB_USERNAME }}",
+        "toReplacement": "",
+        "expectedMatches": 1,
+        "reason": "DOCKERHUB_USERNAME does not exist in the benchmark org; only the login step reads it, and no-registry-login-test-server turns that step off.",
+        "blocksFullParity": false
+      },
+      {
+        "id": "secret-gate-test-server-token",
+        "kind": "secret-gate-annotation",
+        "workflowFile": ".github/workflows/test-server-docker.yaml",
+        "jobId": "docker",
+        "fromPattern": "${{ secrets.DOCKERHUB_TOKEN }}",
+        "toReplacement": "",
+        "expectedMatches": 1,
+        "reason": "DOCKERHUB_TOKEN does not exist in the benchmark org; only the login step reads it, and no-registry-login-test-server turns that step off.",
+        "blocksFullParity": false
+      },
+      {
+        "id": "skip-turn-relay-allow",
+        "kind": "repository-identity-remap",
+        "workflowFile": ".github/workflows/buildtest.yaml",
+        "jobId": "test",
+        "fromPattern": "go test -race -json -v ./...",
+        "toReplacement": "go test -race -json -v -skip '^TestTurnRelay$/^allow$' ./...",
+        "expectedMatches": 1,
+        "reason": "Owner decision 2026-11-16 ~11:38 AM PST: skip exactly one subtest, TestTurnRelay/allow (package test), identically in every setup. It hard-codes 10.0.0.0/8 and 192.168.0.0/16 as the allowed TURN relay ranges; StarSling runners sit in 172.16.0.0/12 (also RFC 1918; seen 172.20.103.196), so it fails there (diag-1 job 133550338104) and passes on GitHub (10.1.x). The parent TestTurnRelay and its other subtests still run. Test step only; no job, step or if: changed; not a lever target.",
+        "blocksFullParity": false
+      }
+    ],
+    "collectors": [],
+    "execution": {
+      "repetitions": 5,
+      "timeoutMinutes": 80,
+      "maxConcurrentExperiments": 1,
+      "pollIntervalSeconds": 15,
+      "apiBudgetPerHour": 252,
+      "maxJobQueueSeconds": 30,
+      "publicRepoGitHubFree": true,
+      "commitIdentity": {
+        "name": "starsling-dev",
+        "email": "290538643+starsling-dev@users.noreply.github.com"
+      }
+    },
+    "instrumentation": true
+  },
+  "samples": [
+    {
+      "sampleId": "full-1-main-push-cold-rep1-github-baseline",
+      "repetition": 1,
+      "scenarioName": "main-push",
+      "variant": "github-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 26.2833,
+        "rawRunnerSeconds": 1577,
+        "wallClockSeconds": 726,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 726,
+        "triggerLatencySeconds": 5,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 3,
+        "maxJobQueueLabel": "ubuntu-26.04-4core"
+      },
+      "workflows": [
+        {
+          "runId": 43952578818,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/buildtest.yaml",
+          "workflowName": "Test",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 487,
+          "startedAt": "2026-11-16T20:42:40Z",
+          "completedAt": "2026-11-16T20:50:47Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-livekit/actions/runs/43952578818",
+          "jobs": [
+            {
+              "jobRecordId": 133598673312,
+              "runId": 43952578818,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/buildtest.yaml",
+              "jobName": "test",
+              "logicalJobId": "test",
+              "conclusion": "success",
+              "durationSeconds": 484,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 3,
+              "resolution": "1s",
+              "labels": [
+                "ubuntu-26.04-4core"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Benchmark event context (harness)",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": true
+                },
+                {
+                  "number": 3,
+                  "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Run shogo82148/actions-setup-redis@ffaf3c39499b2917543d84f6acc818277580b531",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Run redis-cli ping",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Resolve Go version",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 6,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Replace mutexes",
+                  "conclusion": "success",
+                  "durationSeconds": 18,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 9,
+                  "name": "Mage Build",
+                  "conclusion": "success",
+                  "durationSeconds": 63,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 10,
+                  "name": "Lint",
+                  "conclusion": "success",
+                  "durationSeconds": 27,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Test",
+                  "conclusion": "success",
+                  "durationSeconds": 354,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Failed tests",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Upload test log",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 23,
+                  "name": "Post Lint",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 24,
+                  "name": "Post Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 7,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 25,
+                  "name": "Post Run shogo82148/actions-setup-redis@ffaf3c39499b2917543d84f6acc818277580b531",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 26,
+                  "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 27,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14269616519,
+              "run_id": 43952578818,
+              "name": "test-log",
+              "size_in_bytes": 1352409,
+              "sha256": "556201a639ba42a1c80b44495ed5e7c5e493b1e8ad6cddaf91c4672e1c47df3f",
+              "created_at": "2026-11-16T20:50:36Z",
+              "expired": false
+            }
+          ]
+        },
+        {
+          "runId": 43952578959,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/test-server-docker.yaml",
+          "workflowName": "Release Test Server to Docker",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 373,
+          "startedAt": "2026-11-16T20:42:40Z",
+          "completedAt": "2026-11-16T20:48:53Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-livekit/actions/runs/43952578959",
+          "jobs": [
+            {
+              "jobRecordId": 133598675649,
+              "runId": 43952578959,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/test-server-docker.yaml",
+              "jobName": "docker",
+              "logicalJobId": "docker",
+              "conclusion": "success",
+              "durationSeconds": 370,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 2,
+              "resolution": "1s",
+              "labels": [
+                "ubuntu-26.04-4core"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Benchmark event context (harness)",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": true
+                },
+                {
+                  "number": 3,
+                  "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 6,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Login to DockerHub",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 345,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 10,
+                  "name": "Post Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 12,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14272080013,
+              "run_id": 43952578959,
+              "name": "starsling-demo-org~benchmark-livekit~ZFBCR0.dockerbuild",
+              "size_in_bytes": 62411,
+              "sha256": "e1bd147a1286ff61e56087a5d1b47c87aaf69f2c11b6b497722a7571d44bfdf5",
+              "created_at": "2026-11-16T20:48:39Z",
+              "expired": false
+            }
+          ]
+        },
+        {
+          "runId": 43952578910,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker.yaml",
+          "workflowName": "Release to Docker",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 726,
+          "startedAt": "2026-11-16T20:42:40Z",
+          "completedAt": "2026-11-16T20:54:46Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-livekit/actions/runs/43952578910",
+          "jobs": [
+            {
+              "jobRecordId": 133598673634,
+              "runId": 43952578910,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker.yaml",
+              "jobName": "docker",
+              "logicalJobId": "docker",
+              "conclusion": "success",
+              "durationSeconds": 723,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 3,
+              "resolution": "1s",
+              "labels": [
+                "ubuntu-26.04-4core"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Benchmark event context (harness)",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": true
+                },
+                {
+                  "number": 3,
+                  "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 4,
+                  "name": "Docker meta",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Resolve Go version",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 7,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Download Go modules",
+                  "conclusion": "success",
+                  "durationSeconds": 7,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Generate code",
+                  "conclusion": "success",
+                  "durationSeconds": 59,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 9,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 10,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 10,
+                  "name": "Login to DockerHub",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 618,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 19,
+                  "name": "Post Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 20,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 11,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 21,
+                  "name": "Post Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 22,
+                  "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 23,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14272595700,
+              "run_id": 43952578910,
+              "name": "starsling-demo-org~benchmark-livekit~U249JZ.dockerbuild",
+              "size_in_bytes": 68477,
+              "sha256": "a3e664f55050b46c3620dd03da2c60928ac686d422dc41a1bb9390df0cc25992",
+              "created_at": "2026-11-16T20:54:31Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14269616519,
+          "run_id": 43952578818,
+          "name": "test-log",
+          "size_in_bytes": 1352409,
+          "sha256": "556201a639ba42a1c80b44495ed5e7c5e493b1e8ad6cddaf91c4672e1c47df3f",
+          "created_at": "2026-11-16T20:50:36Z",
+          "expired": false
+        },
+        {
+          "id": 14272080013,
+          "run_id": 43952578959,
+          "name": "starsling-demo-org~benchmark-livekit~ZFBCR0.dockerbuild",
+          "size_in_bytes": 62411,
+          "sha256": "e1bd147a1286ff61e56087a5d1b47c87aaf69f2c11b6b497722a7571d44bfdf5",
+          "created_at": "2026-11-16T20:48:39Z",
+          "expired": false
+        },
+        {
+          "id": 14272595700,
+          "run_id": 43952578910,
+          "name": "starsling-demo-org~benchmark-livekit~U249JZ.dockerbuild",
+          "size_in_bytes": 68477,
+          "sha256": "a3e664f55050b46c3620dd03da2c60928ac686d422dc41a1bb9390df0cc25992",
+          "created_at": "2026-11-16T20:54:31Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "e6ac0766b4565513bf3167e48d66e267761a4d0ce40f27d69795b40da8c3501b"
+    },
+    {
+      "sampleId": "full-1-main-push-cold-rep1-starsling-baseline",
+      "repetition": 1,
+      "scenarioName": "main-push",
+      "variant": "starsling-baseline",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 16.9,
+        "rawRunnerSeconds": 1014,
+        "wallClockSeconds": 456,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 456,
+        "triggerLatencySeconds": 5,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 18,
+        "maxJobQueueLabel": "starsling-ubuntu-26.04"
+      },
+      "workflows": [
+        {
+          "runId": 43950160389,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/test-server-docker.yaml",
+          "workflowName": "Release Test Server to Docker",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 225,
+          "startedAt": "2026-11-16T20:28:35Z",
+          "completedAt": "2026-11-16T20:32:20Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-livekit/actions/runs/43950160389",
+          "jobs": [
+            {
+              "jobRecordId": 133590201577,
+              "runId": 43950160389,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/test-server-docker.yaml",
+              "jobName": "docker",
+              "logicalJobId": "docker",
+              "conclusion": "success",
+              "durationSeconds": 214,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 10,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-26.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Benchmark event context (harness)",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": true
+                },
+                {
+                  "number": 4,
+                  "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Login to DockerHub",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 202,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Post Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14267737098,
+              "run_id": 43950160389,
+              "name": "starsling-demo-org~benchmark-livekit~YRF4UV.dockerbuild",
+              "size_in_bytes": 60639,
+              "sha256": "f3184e321138e9e858a4e08589d8298006424479950eb445ab3e3ce311fd5517",
+              "created_at": "2026-11-16T20:32:15Z",
+              "expired": false
+            }
+          ]
+        },
+        {
+          "runId": 43950160625,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/buildtest.yaml",
+          "workflowName": "Test",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 372,
+          "startedAt": "2026-11-16T20:28:35Z",
+          "completedAt": "2026-11-16T20:34:47Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-livekit/actions/runs/43950160625",
+          "jobs": [
+            {
+              "jobRecordId": 133590202420,
+              "runId": 43950160625,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/buildtest.yaml",
+              "jobName": "test",
+              "logicalJobId": "test",
+              "conclusion": "success",
+              "durationSeconds": 353,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 18,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-26.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Benchmark event context (harness)",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": true
+                },
+                {
+                  "number": 4,
+                  "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Run shogo82148/actions-setup-redis@ffaf3c39499b2917543d84f6acc818277580b531",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Run redis-cli ping",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Resolve Go version",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 5,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 9,
+                  "name": "Replace mutexes",
+                  "conclusion": "success",
+                  "durationSeconds": 11,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 10,
+                  "name": "Mage Build",
+                  "conclusion": "success",
+                  "durationSeconds": 36,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Lint",
+                  "conclusion": "success",
+                  "durationSeconds": 15,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Test",
+                  "conclusion": "success",
+                  "durationSeconds": 260,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Failed tests",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Upload test log",
+                  "conclusion": "success",
+                  "durationSeconds": 5,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 24,
+                  "name": "Post Lint",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 25,
+                  "name": "Post Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 8,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 26,
+                  "name": "Post Run shogo82148/actions-setup-redis@ffaf3c39499b2917543d84f6acc818277580b531",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 27,
+                  "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 28,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 29,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14267627734,
+              "run_id": 43950160625,
+              "name": "test-log",
+              "size_in_bytes": 1346821,
+              "sha256": "67eaa698168eea4f171ebacb6d523a00e1f58c3388c85dd0ba93f8b1bf7edfa9",
+              "created_at": "2026-11-16T20:34:32Z",
+              "expired": false
+            }
+          ]
+        },
+        {
+          "runId": 43950160108,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker.yaml",
+          "workflowName": "Release to Docker",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 456,
+          "startedAt": "2026-11-16T20:28:35Z",
+          "completedAt": "2026-11-16T20:36:11Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-livekit/actions/runs/43950160108",
+          "jobs": [
+            {
+              "jobRecordId": 133590201009,
+              "runId": 43950160108,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker.yaml",
+              "jobName": "docker",
+              "logicalJobId": "docker",
+              "conclusion": "success",
+              "durationSeconds": 447,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 8,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-26.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Benchmark event context (harness)",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": true
+                },
+                {
+                  "number": 4,
+                  "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Docker meta",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Resolve Go version",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 4,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Download Go modules",
+                  "conclusion": "success",
+                  "durationSeconds": 6,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 9,
+                  "name": "Generate code",
+                  "conclusion": "success",
+                  "durationSeconds": 43,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 10,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Login to DockerHub",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 381,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 20,
+                  "name": "Post Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 21,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 22,
+                  "name": "Post Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 23,
+                  "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 24,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 25,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14267722782,
+              "run_id": 43950160108,
+              "name": "starsling-demo-org~benchmark-livekit~TSZUEG.dockerbuild",
+              "size_in_bytes": 64542,
+              "sha256": "2cab16dd4c131fb0e0c9b001ed69ddd9fa4d532eb1a847f48a1000c5d3a96dd5",
+              "created_at": "2026-11-16T20:36:05Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14267737098,
+          "run_id": 43950160389,
+          "name": "starsling-demo-org~benchmark-livekit~YRF4UV.dockerbuild",
+          "size_in_bytes": 60639,
+          "sha256": "f3184e321138e9e858a4e08589d8298006424479950eb445ab3e3ce311fd5517",
+          "created_at": "2026-11-16T20:32:15Z",
+          "expired": false
+        },
+        {
+          "id": 14267627734,
+          "run_id": 43950160625,
+          "name": "test-log",
+          "size_in_bytes": 1346821,
+          "sha256": "67eaa698168eea4f171ebacb6d523a00e1f58c3388c85dd0ba93f8b1bf7edfa9",
+          "created_at": "2026-11-16T20:34:32Z",
+          "expired": false
+        },
+        {
+          "id": 14267722782,
+          "run_id": 43950160108,
+          "name": "starsling-demo-org~benchmark-livekit~TSZUEG.dockerbuild",
+          "size_in_bytes": 64542,
+          "sha256": "2cab16dd4c131fb0e0c9b001ed69ddd9fa4d532eb1a847f48a1000c5d3a96dd5",
+          "created_at": "2026-11-16T20:36:05Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "e6ac0766b4565513bf3167e48d66e267761a4d0ce40f27d69795b40da8c3501b"
+    },
+    {
+      "sampleId": "full-1-main-push-cold-rep1-starsling-patched",
+      "repetition": 1,
+      "scenarioName": "main-push",
+      "variant": "starsling-patched",
+      "profileName": "cold",
+      "complete": true,
+      "incompleteReasons": [],
+      "missingWorkflows": [],
+      "missingJobs": [],
+      "cancelledJobs": [],
+      "failedJobs": [],
+      "partialTimestampJobs": [],
+      "timestampResolution": "1s",
+      "metrics": {
+        "repoMinutes": 9.4833,
+        "rawRunnerSeconds": 569,
+        "wallClockSeconds": 380,
+        "prWallClockSeconds": null,
+        "mainWallClockSeconds": 380,
+        "triggerLatencySeconds": 5,
+        "harnessOverheadSeconds": 0,
+        "maxJobQueueSeconds": 10,
+        "maxJobQueueLabel": "starsling-ubuntu-26.04"
+      },
+      "workflows": [
+        {
+          "runId": 43955935803,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/test-server-docker.yaml",
+          "workflowName": "Release Test Server to Docker",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 68,
+          "startedAt": "2026-11-16T21:02:24Z",
+          "completedAt": "2026-11-16T21:03:32Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-livekit/actions/runs/43955935803",
+          "jobs": [
+            {
+              "jobRecordId": 133610361285,
+              "runId": 43955935803,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/test-server-docker.yaml",
+              "jobName": "docker",
+              "logicalJobId": "docker",
+              "conclusion": "success",
+              "durationSeconds": 59,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 9,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-26.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Benchmark event context (harness)",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": true
+                },
+                {
+                  "number": 4,
+                  "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 4,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Login to DockerHub",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 44,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Post Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 15,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14268679975,
+              "run_id": 43955935803,
+              "name": "starsling-demo-org~benchmark-livekit~OL4678.dockerbuild",
+              "size_in_bytes": 54414,
+              "sha256": "d94871bbd118c6957caedc0be2fa6759592bd393f65e366635ec1d92e477f778",
+              "created_at": "2026-11-16T21:03:26Z",
+              "expired": false
+            }
+          ]
+        },
+        {
+          "runId": 43955935974,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/docker.yaml",
+          "workflowName": "Release to Docker",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 149,
+          "startedAt": "2026-11-16T21:02:24Z",
+          "completedAt": "2026-11-16T21:04:53Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-livekit/actions/runs/43955935974",
+          "jobs": [
+            {
+              "jobRecordId": 133610362013,
+              "runId": 43955935974,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/docker.yaml",
+              "jobName": "docker",
+              "logicalJobId": "docker",
+              "conclusion": "success",
+              "durationSeconds": 139,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 10,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-26.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Benchmark event context (harness)",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": true
+                },
+                {
+                  "number": 4,
+                  "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Docker meta",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Resolve Go version",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 4,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Download Go modules",
+                  "conclusion": "success",
+                  "durationSeconds": 5,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 9,
+                  "name": "Generate code",
+                  "conclusion": "success",
+                  "durationSeconds": 44,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 10,
+                  "name": "Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Login to DockerHub",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 74,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 20,
+                  "name": "Post Build and push",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 21,
+                  "name": "Post Set up Docker Buildx",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 22,
+                  "name": "Post Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 23,
+                  "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 24,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 25,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14271237662,
+              "run_id": 43955935974,
+              "name": "starsling-demo-org~benchmark-livekit~YUAXX6.dockerbuild",
+              "size_in_bytes": 60521,
+              "sha256": "7e9749533ce399b62e4aff0e58c165caf02517d1eb063f97d639e544f02adb40",
+              "created_at": "2026-11-16T21:04:45Z",
+              "expired": false
+            }
+          ]
+        },
+        {
+          "runId": 43955936155,
+          "runAttempt": 1,
+          "priorAttemptsCount": 0,
+          "workflowPath": ".github/workflows/buildtest.yaml",
+          "workflowName": "Test",
+          "event": "push",
+          "conclusion": "success",
+          "durationSeconds": 380,
+          "startedAt": "2026-11-16T21:02:24Z",
+          "completedAt": "2026-11-16T21:08:44Z",
+          "htmlUrl": "https://github.com/starsling-demo-org/benchmark-livekit/actions/runs/43955936155",
+          "jobs": [
+            {
+              "jobRecordId": 133610362495,
+              "runId": 43955936155,
+              "runAttempt": 1,
+              "workflowPath": ".github/workflows/buildtest.yaml",
+              "jobName": "test",
+              "logicalJobId": "test",
+              "conclusion": "success",
+              "durationSeconds": 371,
+              "dependencyWaitSeconds": 0,
+              "runnerQueueSeconds": 9,
+              "resolution": "1s",
+              "labels": [
+                "starsling-ubuntu-26.04"
+              ],
+              "steps": [
+                {
+                  "number": 1,
+                  "name": "Set up job",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 2,
+                  "name": "Set up runner",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 3,
+                  "name": "Benchmark event context (harness)",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": true
+                },
+                {
+                  "number": 4,
+                  "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 5,
+                  "name": "Run shogo82148/actions-setup-redis@ffaf3c39499b2917543d84f6acc818277580b531",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 6,
+                  "name": "Run redis-cli ping",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 7,
+                  "name": "Resolve Go version",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 8,
+                  "name": "Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 5,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 9,
+                  "name": "Replace mutexes",
+                  "conclusion": "success",
+                  "durationSeconds": 14,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 10,
+                  "name": "Mage Build",
+                  "conclusion": "success",
+                  "durationSeconds": 37,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 11,
+                  "name": "Lint",
+                  "conclusion": "success",
+                  "durationSeconds": 16,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 12,
+                  "name": "Test",
+                  "conclusion": "success",
+                  "durationSeconds": 288,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 13,
+                  "name": "Failed tests",
+                  "conclusion": "skipped",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 14,
+                  "name": "Upload test log",
+                  "conclusion": "success",
+                  "durationSeconds": 2,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 24,
+                  "name": "Post Lint",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 25,
+                  "name": "Post Set up Go",
+                  "conclusion": "success",
+                  "durationSeconds": 3,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 26,
+                  "name": "Post Run shogo82148/actions-setup-redis@ffaf3c39499b2917543d84f6acc818277580b531",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 27,
+                  "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 28,
+                  "name": "Complete runner",
+                  "conclusion": "success",
+                  "durationSeconds": 1,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                },
+                {
+                  "number": 29,
+                  "name": "Complete job",
+                  "conclusion": "success",
+                  "durationSeconds": 0,
+                  "resolution": "1s",
+                  "isHarnessInstrumentation": false
+                }
+              ]
+            }
+          ],
+          "artifacts": [
+            {
+              "id": 14271693508,
+              "run_id": 43955936155,
+              "name": "test-log",
+              "size_in_bytes": 1359596,
+              "sha256": "59cce36155c46a2a79c1a7904caa3e6cc54fdaf378f481977a0c4b32d38449d1",
+              "created_at": "2026-11-16T21:08:37Z",
+              "expired": false
+            }
+          ]
+        }
+      ],
+      "artifacts": [
+        {
+          "id": 14268679975,
+          "run_id": 43955935803,
+          "name": "starsling-demo-org~benchmark-livekit~OL4678.dockerbuild",
+          "size_in_bytes": 54414,
+          "sha256": "d94871bbd118c6957caedc0be2fa6759592bd393f65e366635ec1d92e477f778",
+          "created_at": "2026-11-16T21:03:26Z",
+          "expired": false
+        },
+        {
+          "id": 14271237662,
+          "run_id": 43955935974,
+          "name": "starsling-demo-org~benchmark-livekit~YUAXX6.dockerbuild",
+          "size_in_bytes": 60521,
+          "sha256": "7e9749533ce399b62e4aff0e58c165caf02517d1eb063f97d639e544f02adb40",
+          "created_at": "2026-11-16T21:04:45Z",
+          "expired": false
+        },
+        {
+          "id": 14271693508,
+          "run_id": 43955936155,
+          "name": "test-log",
+          "size_in_bytes": 1359596,
+          "sha256": "59cce36155c46a2a79c1a7904caa3e6cc54fdaf378f481977a0c4b32d38449d1",
+          "created_at": "2026-11-16T21:08:37Z",
+          "expired": false
+        }
+      ],
+      "inputFingerprint": "e6ac0766b4565513bf3167e48d66e267761a4d0ce40f27d69795b40da8c3501b"
+    }
+  ],
+  "round1Of": "full-1"
+}

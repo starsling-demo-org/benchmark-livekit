@@ -1,0 +1,10 @@
+{
+ "at": "2026-11-17T01:36:17.337Z",
+ "switchAt": "2026-11-16T17:25:00.000Z",
+ "rule": "owner 2026-11-16 12:46 PST: StarSling samples count only with the RAM disk (tmpfs) on every StarSling runner",
+ "verdicts": {
+  "full-1-x1-main-push-cold-rep1-starsling-baseline": {
+   "ok": true
+  }
+ }
+}

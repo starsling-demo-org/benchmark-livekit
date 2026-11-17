@@ -1,0 +1,63 @@
+{
+  "experimentId": "full-1",
+  "sampleId": "full-1-main-push-cold-rep5-starsling-baseline",
+  "scenarioName": "main-push",
+  "variant": "starsling-baseline",
+  "profileName": "cold",
+  "currentStep": "completed",
+  "completedSteps": [
+    "1_acquire_lease",
+    "2_register_placeholders",
+    "3_disable_workflows_and_reset_refs",
+    "4_install_and_verify_trees",
+    "5_enable_scenario_workflows",
+    "6_trigger_event",
+    "7_await_downstream_completion"
+  ],
+  "controlBranch": "bench/control",
+  "defaultBranch": "showcase",
+  "benchmarkOwnedRefs": [
+    "refs/heads/master",
+    "refs/heads/showcase",
+    "refs/heads/bench/pr/main-push/head"
+  ],
+  "previousBenchmarkRefs": {
+    "refs/heads/master": "5f129b19896d9318b48de4b0cf39a8995461a21d",
+    "refs/heads/showcase": "d90322baa362a22bb72cd54e26c460b02442412b",
+    "refs/heads/bench/pr/main-push/head": null
+  },
+  "observedUnrelatedRefs": {
+    "refs/heads/bench/control": "7a4a02d2be345775353bf0470622cbbffb82e53d",
+    "refs/heads/starsling/develop": "b0bc22e83c8c0ec6cf0e7e666a0fd82371206a69"
+  },
+  "registeredPlaceholderWorkflows": [
+    ".github/workflows/buildtest.yaml",
+    ".github/workflows/docker.yaml",
+    ".github/workflows/release.yaml",
+    ".github/workflows/slack-notifier.yaml",
+    ".github/workflows/test-server-docker.yaml"
+  ],
+  "disabledWorkflows": [
+    ".github/workflows/buildtest.yaml",
+    ".github/workflows/docker.yaml",
+    ".github/workflows/release.yaml",
+    ".github/workflows/slack-notifier.yaml",
+    ".github/workflows/test-server-docker.yaml"
+  ],
+  "enabledWorkflows": [
+    ".github/workflows/buildtest.yaml",
+    ".github/workflows/docker.yaml",
+    ".github/workflows/test-server-docker.yaml"
+  ],
+  "updatedAt": "2026-11-17T00:01:09.560Z",
+  "leaseAcquiredAt": "2026-11-16T23:46:13.664Z",
+  "leaseHolder": "full-1:full-1-main-push-cold-rep5-starsling-baseline",
+  "installedTreeHash": "a8010467ad7cefabbb7d64c0b5c74f489b606925643877e0fb92f1488962b882",
+  "dispatchRecord": {
+    "idempotencyKey": "full-1:full-1-main-push-cold-rep5-starsling-baseline:main-push:starsling-baseline",
+    "dispatchedAt": "2026-11-16T23:52:07.701Z",
+    "event": "push",
+    "targetRef": "refs/heads/master",
+    "headSha": "5f129b19896d9318b48de4b0cf39a8995461a21d"
+  }
+}

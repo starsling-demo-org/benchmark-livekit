@@ -1,0 +1,63 @@
+{
+  "experimentId": "full-1",
+  "sampleId": "full-1-main-push-cold-rep3-starsling-patched",
+  "scenarioName": "main-push",
+  "variant": "starsling-patched",
+  "profileName": "cold",
+  "currentStep": "completed",
+  "completedSteps": [
+    "1_acquire_lease",
+    "2_register_placeholders",
+    "3_disable_workflows_and_reset_refs",
+    "4_install_and_verify_trees",
+    "5_enable_scenario_workflows",
+    "6_trigger_event",
+    "7_await_downstream_completion"
+  ],
+  "controlBranch": "bench/control",
+  "defaultBranch": "showcase",
+  "benchmarkOwnedRefs": [
+    "refs/heads/master",
+    "refs/heads/showcase",
+    "refs/heads/bench/pr/main-push/head"
+  ],
+  "previousBenchmarkRefs": {
+    "refs/heads/master": "3d382f7088163611fcbe299aedcb2468221af220",
+    "refs/heads/showcase": "d90322baa362a22bb72cd54e26c460b02442412b",
+    "refs/heads/bench/pr/main-push/head": null
+  },
+  "observedUnrelatedRefs": {
+    "refs/heads/bench/control": "7a4a02d2be345775353bf0470622cbbffb82e53d",
+    "refs/heads/starsling/develop": "b0bc22e83c8c0ec6cf0e7e666a0fd82371206a69"
+  },
+  "registeredPlaceholderWorkflows": [
+    ".github/workflows/buildtest.yaml",
+    ".github/workflows/docker.yaml",
+    ".github/workflows/release.yaml",
+    ".github/workflows/slack-notifier.yaml",
+    ".github/workflows/test-server-docker.yaml"
+  ],
+  "disabledWorkflows": [
+    ".github/workflows/buildtest.yaml",
+    ".github/workflows/docker.yaml",
+    ".github/workflows/release.yaml",
+    ".github/workflows/slack-notifier.yaml",
+    ".github/workflows/test-server-docker.yaml"
+  ],
+  "enabledWorkflows": [
+    ".github/workflows/buildtest.yaml",
+    ".github/workflows/docker.yaml",
+    ".github/workflows/test-server-docker.yaml"
+  ],
+  "updatedAt": "2026-11-16T22:14:34.846Z",
+  "leaseAcquiredAt": "2026-11-16T21:59:49.753Z",
+  "leaseHolder": "full-1:full-1-main-push-cold-rep3-starsling-patched",
+  "installedTreeHash": "1f4a72644c1a935e64d24803075dc2e6456c84e8d580a268d8672136e94d4eed",
+  "dispatchRecord": {
+    "idempotencyKey": "full-1:full-1-main-push-cold-rep3-starsling-patched:main-push:starsling-patched",
+    "dispatchedAt": "2026-11-16T22:05:40.964Z",
+    "event": "push",
+    "targetRef": "refs/heads/master",
+    "headSha": "0776d47efc395fe993470ce1e3324e19f56dc4ee"
+  }
+}

@@ -1,0 +1,53 @@
+{
+ "at": "2026-11-17T01:36:17.321Z",
+ "switchAt": "2026-11-16T17:25:00.000Z",
+ "rule": "owner 2026-11-16 12:46 PST: StarSling samples count only with the RAM disk (tmpfs) on every StarSling runner",
+ "verdicts": {
+  "full-1-main-push-cold-rep1-starsling-baseline": {
+   "ok": false,
+   "reason": "StarSling runner without RAM disk (starsling-z-3d650865a1514eb896dff7e1fdfb5925: storage unknown after the switch; starsling-z-5e4082e632cc43b2a354b15533081028: storage unknown after the switch; starsling-z-da3d06ee7c0b420ba5cdba6f81d80536: storage unknown after the switch)"
+  },
+  "full-1-main-push-cold-rep1-github-baseline": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep1-starsling-patched": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep2-starsling-patched": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep2-starsling-baseline": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep2-github-baseline": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep3-starsling-patched": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep3-github-baseline": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep3-starsling-baseline": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep4-github-baseline": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep4-starsling-patched": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep4-starsling-baseline": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep5-starsling-baseline": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep5-github-baseline": {
+   "ok": true
+  },
+  "full-1-main-push-cold-rep5-starsling-patched": {
+   "ok": true
+  }
+ }
+}
