@@ -123,7 +123,7 @@ Each cell is the whole wait for that merge and links to its run.
 6. **Check.** Replays are compared job by job with upstream's own runs for the same commit, and every sample's test verdicts, coverage and cache restores are read from its own job logs.
 
 - **Control configuration.** Each round also replayed the event on StarSling runners with the CI unchanged, as an internal control. It is not part of this comparison, and its samples are not shown in the tables on this page; they are in the data files under `benchmark/`.
-- **Default branch.** The default branch is `master`.
+- **Default branch.** Upstream's default branch is `master`.
 - **Lane: merges to the default branch.** This page measures merges to livekit's default branch. Each sample replays the merge of `401ddb14`. PR updates were not measured, because the agent PR changes the two Docker release builds, and upstream runs those only on merges to the default branch (and on version tags), never on a pull request.
 - **Workflows in this merge.** The replayed merge changes `pkg/rtc/participant.go` and `pkg/rtc/participant_internal_test.go`, and three workflows run: Test (`buildtest.yaml`), Release to Docker (`docker.yaml`, the server image) and Release Test Server to Docker (`test-server-docker.yaml`). Both Docker workflows build their image for linux/amd64 and linux/arm64. `release.yaml` runs only on version tags and `slack-notifier.yaml` only on pull-request events, so neither is part of these numbers.
 - **Bench-only changes, identical in every configuration and never part of the agent PR:**
