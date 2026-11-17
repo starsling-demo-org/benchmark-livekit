@@ -35,7 +35,7 @@ if [ ! -f "$dockerfile" ]; then
   exit 1
 fi
 
-version=$(sed -nE 's/^FROM[[:space:]]+golang:([0-9]+\.[0-9]+\.[0-9]+)[^[:space:]]*.*/\1/p' "$dockerfile" | sort -u)
+version=$(sed -nE 's/^FROM[[:space:]]+(--[^[:space:]]+[[:space:]]+)*golang:([0-9]+\.[0-9]+\.[0-9]+)[^[:space:]]*.*/\2/p' "$dockerfile" | sort -u)
 
 if [ -z "$version" ]; then
   echo "$dockerfile: no pinned 'FROM golang:X.Y.Z-...' base image found" >&2
