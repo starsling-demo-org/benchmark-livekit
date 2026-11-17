@@ -1,0 +1,17 @@
+sample_id,repetition,scenario,profile,variant,complete,wall_clock_sec,repo_minutes,raw_runner_sec,trigger_latency_sec,harness_overhead_sec,incomplete_reasons
+full-1-main-push-cold-rep1-starsling-baseline,1,main-push,cold,starsling-baseline,false,456,16.9,1014,5,0,"Voided by the storage rule (StarSling samples count only with the RAM disk on every StarSling runner): StarSling runner without RAM disk (starsling-z-3d650865a1514eb896dff7e1fdfb5925: storage unknown after the switch; starsling-z-5e4082e632cc43b2a354b15533081028: storage unknown after the switch; starsling-z-da3d06ee7c0b420ba5cdba6f81d80536: storage unknown after the switch). Replaced by the full-1-x1 run, filed here as full-1-main-push-cold-rep1-starsling-baseline-retry1"
+full-1-main-push-cold-rep1-github-baseline,1,main-push,cold,github-baseline,true,726,26.2833,1577,5,0,
+full-1-main-push-cold-rep1-starsling-patched,1,main-push,cold,starsling-patched,true,380,9.4833,569,5,0,
+full-1-main-push-cold-rep2-starsling-patched,2,main-push,cold,starsling-patched,true,343,8.8333,530,4,0,
+full-1-main-push-cold-rep2-starsling-baseline,2,main-push,cold,starsling-baseline,true,456,17.3833,1043,5,0,
+full-1-main-push-cold-rep2-github-baseline,2,main-push,cold,github-baseline,true,968,32.2333,1934,5,0,
+full-1-main-push-cold-rep3-starsling-patched,3,main-push,cold,starsling-patched,true,457,12.6,756,5,0,
+full-1-main-push-cold-rep3-github-baseline,3,main-push,cold,github-baseline,true,952,37.3333,2240,5,1,
+full-1-main-push-cold-rep3-starsling-baseline,3,main-push,cold,starsling-baseline,true,455,16.7667,1006,5,0,
+full-1-main-push-cold-rep4-github-baseline,4,main-push,cold,github-baseline,true,1383,39.6,2376,4,0,
+full-1-main-push-cold-rep4-starsling-patched,4,main-push,cold,starsling-patched,true,350,8.9833,539,4,0,
+full-1-main-push-cold-rep4-starsling-baseline,4,main-push,cold,starsling-baseline,true,434,16.5833,995,5,0,
+full-1-main-push-cold-rep5-starsling-baseline,5,main-push,cold,starsling-baseline,true,471,16.8,1008,4,0,
+full-1-main-push-cold-rep5-github-baseline,5,main-push,cold,github-baseline,true,1459,40.9,2454,5,1,
+full-1-main-push-cold-rep5-starsling-patched,5,main-push,cold,starsling-patched,true,356,9.0167,541,5,0,
+full-1-main-push-cold-rep1-starsling-baseline-retry1,1,main-push,cold,starsling-baseline,true,441,17.35,1041,4,0,

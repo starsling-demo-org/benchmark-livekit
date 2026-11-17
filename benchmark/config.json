@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 1,
+  "upstream": {
+    "repository": "livekit/livekit",
+    "commitSha": "401ddb1432900a357c990af3905511290dc9b9f7",
+    "defaultBranch": "master"
+  },
+  "benchmarkRepository": {
+    "repository": "starsling-demo-org/benchmark-livekit",
+    "controlBranch": "bench/control",
+    "defaultBranch": "showcase",
+    "replayBranch": "master"
+  },
+  "scenarios": {
+    "main-push": {
+      "name": "main-push",
+      "description": "Merge of 401ddb143290 to master",
+      "event": "push",
+      "main": {
+        "branch": "master",
+        "beforeSha": "45b5584c84c12a6d349c4e430807022eeaa7c8af",
+        "afterSha": "401ddb1432900a357c990af3905511290dc9b9f7",
+        "changedPaths": [
+          "pkg/rtc/participant.go",
+          "pkg/rtc/participant_internal_test.go"
+        ]
+      },
+      "referenceRuns": [
+        {
+          "workflowPath": ".github/workflows/buildtest.yaml",
+          "runId": 42833892494,
+          "attempt": 1,
+          "htmlUrl": "https://github.com/livekit/livekit/actions/runs/42833892494"
+        },
+        {
+          "workflowPath": ".github/workflows/test-server-docker.yaml",
+          "runId": 42833892548,
+          "attempt": 1,
+          "htmlUrl": "https://github.com/livekit/livekit/actions/runs/42833892548"
+        },
+        {
+          "workflowPath": ".github/workflows/docker.yaml",
+          "runId": 42833892585,
+          "attempt": 1,
+          "htmlUrl": "https://github.com/livekit/livekit/actions/runs/42833892585"
+        }
+      ]
+    },
+    "seed-parent": {
+      "name": "seed-parent",
+      "role": "seed",
+      "description": "Warm seed: the previous push (45b5584c84c1 onto f6adc7aa28e4)",
+      "event": "push",
+      "main": {
+        "branch": "master",
+        "beforeSha": "f6adc7aa28e4adcdf10dd575e108308569e73f9e",
+        "afterSha": "45b5584c84c12a6d349c4e430807022eeaa7c8af",
+        "changedPaths": [
+          "pkg/service/turn.go",
+          "pkg/service/turn_test.go"
+        ]
+      },
+      "referenceRuns": []
+    }
+  },
+  "patches": [
+    {
+      "id": "stack-0",
+      "source": "local",
+      "pathOrUrl": "patches/stack-0.patch",
+      "description": "levers stacked in order: 01-dockerfile-cross-compile"
+    }
+  ],
+  "runnerMapping": {
+    "defaultMap": {
+      "ubuntu-latest": {
+        "github": "ubuntu-26.04-4core",
+        "starsling": "starsling-ubuntu-26.04"
+      },
+      "ubuntu-24.04": {
+        "starsling": "starsling-ubuntu-24.04"
+      },
+      "ubuntu-26.04": {
+        "starsling": "starsling-ubuntu-26.04"
+      },
+      "ubuntu-slim": {
+        "starsling": "starsling-ubuntu-24.04-2"
+      }
+    },
+    "runnerSpecs": {
+      "ubuntu-latest": {
+        "label": "ubuntu-latest",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16
+      },
+      "ubuntu-24.04": {
+        "label": "ubuntu-24.04",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16
+      },
+      "ubuntu-26.04": {
+        "label": "ubuntu-26.04",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16
+      },
+      "ubuntu-slim": {
+        "label": "ubuntu-slim",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 1,
+        "ramGiB": 5
+      },
+      "starsling-ubuntu-24.04-2": {
+        "label": "starsling-ubuntu-24.04-2",
+        "provider": "starsling",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 2,
+        "ramGiB": 8
+      },
+      "starsling-ubuntu-24.04": {
+        "label": "starsling-ubuntu-24.04",
+        "provider": "starsling",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16
+      },
+      "starsling-ubuntu-26.04": {
+        "label": "starsling-ubuntu-26.04",
+        "provider": "starsling",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16
+      },
+      "macos-latest": {
+        "label": "macos-latest",
+        "provider": "github",
+        "os": "macos",
+        "arch": "arm64",
+        "vcpu": 3,
+        "ramGiB": 7
+      },
+      "windows-latest": {
+        "label": "windows-latest",
+        "provider": "github",
+        "os": "windows",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16
+      },
+      "ubuntu-26.04-4core": {
+        "label": "ubuntu-26.04-4core",
+        "provider": "github",
+        "os": "linux",
+        "arch": "x64",
+        "vcpu": 4,
+        "ramGiB": 16
+      }
+    }
+  },
+  "profiles": {
+    "cold": {
+      "name": "cold",
+      "actionsCache": "cold",
+      "crossRunArtifacts": "none",
+      "restoreExpectations": {},
+      "testResultReuseAllowed": false
+    },
+    "warm": {
+      "name": "warm",
+      "actionsCache": "warm",
+      "crossRunArtifacts": "seeded",
+      "seedScenario": "seed-parent",
+      "restoreExpectations": {},
+      "testResultReuseAllowed": true,
+      "amortizationHorizonRuns": 10
+    }
+  },
+  "adaptations": [
+    {
+      "id": "no-registry-login-or-push-server",
+      "kind": "deployment-guard",
+      "workflowFile": ".github/workflows/docker.yaml",
+      "jobId": "docker",
+      "fromPattern": "github.event_name != 'pull_request'",
+      "toReplacement": "false && github.event_name != 'pull_request'",
+      "expectedMatches": 2,
+      "reason": "Login to DockerHub (if:) and Build and push (push:): no Docker Hub secrets in the benchmark org and nothing may be published; upstream's guard kept, 'false &&' in front. The image is still built for linux/amd64 and linux/arm64.",
+      "blocksFullParity": true
+    },
+    {
+      "id": "no-registry-login-test-server",
+      "kind": "workflow-setting",
+      "workflowFile": ".github/workflows/test-server-docker.yaml",
+      "jobId": "docker",
+      "fromPattern": "",
+      "toReplacement": "",
+      "expectedMatches": 0,
+      "setPath": [
+        "steps",
+        "3",
+        "if"
+      ],
+      "setValue": false,
+      "reason": "Login to DockerHub has no if: upstream; no secrets in the benchmark org (step index +1: instrumentation inserts the harness step at index 0 before adaptations apply)",
+      "blocksFullParity": true
+    },
+    {
+      "id": "no-image-push-test-server",
+      "kind": "workflow-setting",
+      "workflowFile": ".github/workflows/test-server-docker.yaml",
+      "jobId": "docker",
+      "fromPattern": "",
+      "toReplacement": "",
+      "expectedMatches": 0,
+      "setPath": [
+        "steps",
+        "4",
+        "with",
+        "push"
+      ],
+      "setValue": false,
+      "reason": "Build and push must not publish livekit/test-server:latest; the image is still built for linux/amd64 and linux/arm64 (step index +1: instrumentation inserts the harness step at index 0 before adaptations apply)",
+      "blocksFullParity": true
+    },
+    {
+      "id": "secret-gate-docker-username",
+      "kind": "secret-gate-annotation",
+      "workflowFile": ".github/workflows/docker.yaml",
+      "jobId": "docker",
+      "fromPattern": "${{ secrets.DOCKERHUB_USERNAME }}",
+      "toReplacement": "",
+      "expectedMatches": 1,
+      "reason": "DOCKERHUB_USERNAME does not exist in the benchmark org; only the login step reads it, and no-registry-login-or-push-server turns that step off.",
+      "blocksFullParity": false
+    },
+    {
+      "id": "secret-gate-docker-token",
+      "kind": "secret-gate-annotation",
+      "workflowFile": ".github/workflows/docker.yaml",
+      "jobId": "docker",
+      "fromPattern": "${{ secrets.DOCKERHUB_TOKEN }}",
+      "toReplacement": "",
+      "expectedMatches": 1,
+      "reason": "DOCKERHUB_TOKEN does not exist in the benchmark org; only the login step reads it, and no-registry-login-or-push-server turns that step off.",
+      "blocksFullParity": false
+    },
+    {
+      "id": "secret-gate-test-server-username",
+      "kind": "secret-gate-annotation",
+      "workflowFile": ".github/workflows/test-server-docker.yaml",
+      "jobId": "docker",
+      "fromPattern": "${{ secrets.DOCKERHUB_USERNAME }}",
+      "toReplacement": "",
+      "expectedMatches": 1,
+      "reason": "DOCKERHUB_USERNAME does not exist in the benchmark org; only the login step reads it, and no-registry-login-test-server turns that step off.",
+      "blocksFullParity": false
+    },
+    {
+      "id": "secret-gate-test-server-token",
+      "kind": "secret-gate-annotation",
+      "workflowFile": ".github/workflows/test-server-docker.yaml",
+      "jobId": "docker",
+      "fromPattern": "${{ secrets.DOCKERHUB_TOKEN }}",
+      "toReplacement": "",
+      "expectedMatches": 1,
+      "reason": "DOCKERHUB_TOKEN does not exist in the benchmark org; only the login step reads it, and no-registry-login-test-server turns that step off.",
+      "blocksFullParity": false
+    },
+    {
+      "id": "skip-turn-relay-allow",
+      "kind": "repository-identity-remap",
+      "workflowFile": ".github/workflows/buildtest.yaml",
+      "jobId": "test",
+      "fromPattern": "go test -race -json -v ./...",
+      "toReplacement": "go test -race -json -v -skip '^TestTurnRelay$/^allow$' ./...",
+      "expectedMatches": 1,
+      "reason": "Owner decision 2026-11-16 ~11:38 AM PST: skip exactly one subtest, TestTurnRelay/allow (package test), identically in every setup. It hard-codes 10.0.0.0/8 and 192.168.0.0/16 as the allowed TURN relay ranges; StarSling runners sit in 172.16.0.0/12 (also RFC 1918; seen 172.20.103.196), so it fails there (diag-1 job 133550338104) and passes on GitHub (10.1.x). The parent TestTurnRelay and its other subtests still run. Test step only; no job, step or if: changed; not a lever target.",
+      "blocksFullParity": false
+    }
+  ],
+  "collectors": [],
+  "execution": {
+    "repetitions": 5,
+    "timeoutMinutes": 80,
+    "maxConcurrentExperiments": 1,
+    "pollIntervalSeconds": 15,
+    "apiBudgetPerHour": 252,
+    "maxJobQueueSeconds": 30,
+    "publicRepoGitHubFree": true,
+    "commitIdentity": {
+      "name": "starsling-dev",
+      "email": "290538643+starsling-dev@users.noreply.github.com"
+    }
+  },
+  "instrumentation": true
+}
